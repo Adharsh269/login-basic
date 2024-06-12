@@ -1,0 +1,22 @@
+{
+  "details": [
+    {
+      "username": "Tobi",
+      "email": "sample@gmail.com",
+      "password": "tobi@269",
+      "id": "8c05"
+    },
+    {
+      "id": "6508",
+      "username": "sad",
+      "email": "sad@gmail.com",
+      "password": "sad"
+    },
+    {
+      "id": "22df",
+      "username": "Adharsh269",
+      "email": "1918@gmail.com",
+      "password": "1234"
+    }
+  ]
+}
