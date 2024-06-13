@@ -1,37 +1,59 @@
+/* Create.css */
 .form-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-.name {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 1px;
-    border: 5px solid #ddd;
-    border-radius: 4px;
-}
-h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    max-width: 400px;
+    height: 360px;
+    margin: 0 auto;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.form-container h3 {
+    margin: 0.5em 0;
+    font-size: 0.9em; 
 }
+
+.form-container input {
+    width: 100%;
+    padding: 0.4em; 
+    margin:  0;
+    box-sizing: border-box;
+    font-size: 0.9em; 
+}
+
 .submit-button {
     width: 100%;
-    padding: 10px;
-    background-color: #4caf50;
-    border: none;
-    border-radius: 4px;
+    padding: 0.6em; 
+    margin-top: 1em;
+    background-color: #007BFF;
     color: white;
-    font-size: 16px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 0.9em;
 }
 
 .submit-button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
+}
+
+.error-list {
+    color: red;
+    font-size: 0.6em; 
+    margin: 0.5em 0;
+    padding: 0;
+    padding-left: 0;
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.error-list li {
+    margin-bottom: 0.2em; 
+    display: inline;
+}
+.error-container{
+min-height: 1.5em;
 }
