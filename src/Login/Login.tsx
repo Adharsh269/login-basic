@@ -10,21 +10,21 @@ function Login(){
     password: "",
 });
   const navigate=useNavigate();
-  const handleSubmit =(e:any)=>{
-      e.preventDefault();
-      axios
-      .get(`http://localhost:3001/details`)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    axios
+      .get(`http://localhost:8080/user/login`, {
+        params: {
+          username: details.username,
+          password: details.password,
+        },
+      })
       .then((response) => {
-        const users = response.data;
-        const user = users.find((u: { username: string; password: string; }) => 
-          u.username === details.username && u.password === details.password
-        );
-        if (user) {
-          console.log("Login successful");
+        if (response.data === "success") {
           navigate("/home");
         } else {
-          console.error("Invalid credentials");
-          alert("Login failed. Please check your username and password and try again.");
+          setDetails({ username: "", password: "" });
+          navigate("/");
         }
       })
       .catch((error) => {

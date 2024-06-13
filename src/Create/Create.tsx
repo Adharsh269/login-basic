@@ -8,9 +8,10 @@ function Create() {
     username: "",
     email: "",
     password: "",
+    confirmPass: "",
   });
   const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
-  const [confirmPass, setConformPassword] = useState("");
+  
   const navigate = useNavigate();
 
   const validatePassword = (password: string) => {
@@ -32,40 +33,58 @@ function Create() {
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     const newPassword = e.target.value;
     setDetails({ ...details, password: newPassword });
     const validateErrors = validatePassword(newPassword);
     setPasswordErrors(validateErrors);
   };
-  const handleSubmitt = (event: any) => {
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("user details...." + details);
     if (passwordErrors.length === 0) {
-			if(details.password===confirmPass){
-				axios
-        .post("http://localhost:3001/details", details)
-        .then(() => navigate("/"));
-			}{
-				alert("Password do not match")
-			} 
+      if (details.password === details.confirmPass) {
+        const payloadAllDetails = {
+          username: details.username,
+          email: details.email,
+          password: details.password,
+          confirmPass: details.confirmPass,
+        };
+
+        const payloadUsernamePassword = {
+          username: details.username,
+          password: details.password,
+        };
+
+        try {
+          await axios.post("http://localhost:8080/create/user", payloadAllDetails);
+          await axios.post("http://localhost:8080/add/user", payloadUsernamePassword);
+          navigate("/");
+        } catch (error) {
+          console.error("There was an error creating the account:", error);
+          alert("An error occurred. Please try again later.");
+        }
+      } else {
+        alert("Passwords do not match");
+      }
     } else {
       alert("Please fix the password errors before submitting");
     }
   };
+
   return (
     <div>
       <div>
-        <h1>New Account</h1>
+        <h1>Sign up</h1>
       </div>
       <div className="form-container">
-        <form onSubmit={handleSubmitt}>
-          <h3>UserName</h3>
+        <form onSubmit={handleSubmit}>
+          <h3>Username</h3>
           <input
             className="name"
             type="text"
             placeholder="Username"
             required
+            value={details.username}
             onChange={(e) =>
               setDetails({ ...details, username: e.target.value })
             }
@@ -73,10 +92,11 @@ function Create() {
           <br />
           <h3>Email</h3>
           <input
-            type="text"
+            type="email"
             className="name"
             placeholder="sample@gmail.com"
             required
+            value={details.email}
             onChange={(e) => setDetails({ ...details, email: e.target.value })}
           />
           <br />
@@ -86,9 +106,9 @@ function Create() {
             className="name"
             placeholder="****"
             required
+            value={details.password}
             onChange={handlePasswordChange}
           />
-          
           <div className="error-container">
             {passwordErrors.length > 0 && (
               <ul className="error-list">
@@ -98,16 +118,19 @@ function Create() {
               </ul>
             )}
           </div>
-          <h3>Conform Password</h3>
+          <h3>Confirm Password</h3>
           <input
             type="password"
             className="name"
             placeholder="****"
             required
-            onChange={(e) => setConformPassword(e.target.value)}
+            value={details.confirmPass}
+            onChange={(e) =>
+              setDetails({ ...details, confirmPass: e.target.value })
+            }
           />
-					<br />
-					<br />
+          <br />
+          <br />
           <input type="submit" value="Submit" className="submit-button" />
         </form>
       </div>
