@@ -10,7 +10,7 @@ function Login(){
     password: "",
 });
   const navigate=useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     axios
       .get(`http://localhost:8080/user/login`, {

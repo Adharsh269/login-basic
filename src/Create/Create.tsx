@@ -28,7 +28,9 @@ function Create() {
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
       errors.push("At least one special character.");
     }
-
+    if(!/[0-9]/.test(password)){
+      errors.push("At leadt one number");
+    }
     return errors;
   };
 
