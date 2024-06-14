@@ -34,7 +34,7 @@ function Create() {
     return errors;
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePasswordChange = (e: any) => {
     const newPassword = e.target.value;
     setDetails({ ...details, password: newPassword });
     const validateErrors = validatePassword(newPassword);
