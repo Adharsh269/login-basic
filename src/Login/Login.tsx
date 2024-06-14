@@ -21,6 +21,7 @@ function Login(){
       })
       .then((response) => {
         if (response.data === "success") {
+          localStorage.setItem('UserName',details.username);
           navigate("/home");
         } else {
           setDetails({ username: "", password: "" });
