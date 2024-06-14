@@ -41,7 +41,7 @@ function Create() {
     setPasswordErrors(validateErrors);
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
     if (passwordErrors.length === 0) {
       if (details.password === details.confirmPass) {
