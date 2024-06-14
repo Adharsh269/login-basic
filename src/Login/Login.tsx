@@ -38,7 +38,8 @@ function Login(){
 				<h1>Requirement Portal</h1>
         <div className="form-container">
           <form onSubmit={handleSubmit}>
-            <h3>Login</h3>
+          <h2>Login</h2>
+            <h3>Username</h3>
             <input type="text" className="name" placeholder="Username" value={details.username} 
 						required
 						onChange={(e)=>{
